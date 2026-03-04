@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ray's Blog — Analyses indépendantes</title>
+
+  <!-- Open Graph / Social Media Preview -->
+  <meta property="og:title" content="Ray's Blog — Analyses indépendantes">
+  <meta property="og:description" content="Analyses géopolitiques, économiques et sociales en français, anglais et arabe.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ray's Blog">
+  <meta name="twitter:description" content="Analyses géopolitiques, économiques et sociales.">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@400;600&family=Libre+Franklin:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FAFAF7;
+      --text: #1A1A1A;
+      --accent: #C8102E;
+      --secondary: #6B6B6B;
+      --border: #E0DDD5;
+      --card-bg: #FFFFFF;
+      --highlight: #FFF8F0;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Source Serif 4', Georgia, serif;
+      --font-nav: 'Libre Franklin', 'Helvetica Neue', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F1118;
+      --text: #E4E8F1;
+      --accent: #E8384F;
+      --secondary: #8A91A5;
+      --border: #252A3A;
+      --card-bg: #181C28;
+      --highlight: #1C2030;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      min-height: 100vh;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* ─── Header ─── */
+    .header {
+      border-bottom: 2px solid var(--accent);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { cursor: pointer; }
+    .logo h1 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .logo-subtitle {
+      color: var(--secondary);
+      font-size: 11px;
+      margin-top: 2px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: var(--font-nav);
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav { display: flex; gap: 20px; }
+    .nav-link {
+      font-family: var(--font-nav);
+      font-size: 13px;
+      color: var(--secondary);
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active {
+      color: var(--text);
+      font-weight: 600;
+      border-bottom-color: var(--accent);
+    }
+    .lang-switcher {
+      display: flex;
+      gap: 6px;
+      border-left: 1px solid var(--border);
+      padding-left: 16px;
+    }
+    .lang-btn {
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: transparent;
+      color: var(--secondary);
+      font-size: 12px;
+      font-family: var(--font-nav);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      border: 1.5px solid var(--accent);
+      background: #FFF5F5;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ─── Main ─── */
+    .main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px 40px;
+    }
+
+    /* ─── Featured ─── */
+    .featured {
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .featured:hover .featured-title { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+    .featured-label {
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-family: var(--font-nav);
+    }
+    .featured-title {
+      font-family: var(--font-display);
+      font-size: 36px;
+      margin: 16px 0 12px;
+      line-height: 1.2;
+      font-weight: 700;
+      max-width: 720px;
+    }
+    .featured-excerpt {
+      color: var(--secondary);
+      font-size: 17px;
+      line-height: 1.65;
+      max-width: 620px;
+      margin-bottom: 20px;
+    }
+    .meta {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--secondary);
+      font-family: var(--font-nav);
+      align-items: center;
+    }
+    .meta-sep { color: var(--border); }
+
+    /* ─── Section Title ─── */
+    .section-title {
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 24px;
+      font-weight: 600;
+      font-family: var(--font-nav);
+    }
+
+    /* ─── Article Cards ─── */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .articles-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 28px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .card:hover {
+      background: var(--highlight);
+      border-left: 3px solid var(--accent);
+    }
+    .card[dir="rtl"]:hover {
+      border-left: 1px solid var(--border);
+      border-right: 3px solid var(--accent);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .card-category {
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      font-family: var(--font-nav);
+    }
+    .card-flag { font-size: 16px; }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      margin-bottom: 10px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .card-excerpt {
+      color: var(--secondary);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-meta {
+      font-size: 12px;
+      color: var(--secondary);
+      font-family: var(--font-nav);
+      display: flex;
+      gap: 8px;
+    }
+    .card-readmore {
+      font-size: 13px;
+      color: var(--accent);
+      font-family: var(--font-nav);
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .card:hover .card-readmore { opacity: 1; }
+
+    /* ─── Filters ─── */
+    .filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: transparent;
+      color: var(--secondary);
+      font-size: 13px;
+      font-family: var(--font-nav);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn.active {
+      border-color: var(--accent);
+      background: #FFF5F5;
+      color: var(--accent);
+    }
+
+    /* ─── Article Page ─── */
+    .back-link {
+      color: var(--accent);
+      font-size: 14px;
+      font-family: var(--font-nav);
+      cursor: pointer;
+      font-weight: 500;
+      display: inline-block;
+    }
+    .back-link:hover { text-decoration: underline; }
+    .article-container { margin-top: 24px; max-width: 680px; }
+    .article-category-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .article-title {
+      font-family: var(--font-display);
+      font-size: 34px;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    .article-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--secondary);
+      font-family: var(--font-nav);
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-body {
+      font-size: 17px;
+      line-height: 1.85;
+    }
+    .article-body p {
+      margin-bottom: 24px;
+      text-align: justify;
+    }
+
+    /* ─── Share Buttons ─── */
+    .share-section {
+      margin-top: 40px;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+    .share-label {
+      font-family: var(--font-nav);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .share-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .share-btn {
+      padding: 8px 20px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--card-bg);
+      font-family: var(--font-nav);
+      font-size: 13px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .share-btn:hover {
+      background: var(--highlight);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ─── Divider ─── */
+    .accent-divider {
+      margin: 48px 0 36px;
+      border-top: 2px solid var(--accent);
+      width: 60px;
+    }
+
+    /* ─── Comments ─── */
+    .comments-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      margin-bottom: 24px;
+    }
+    .comment-form {
+      background: var(--highlight);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .comment-form-label {
+      font-family: var(--font-nav);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+      color: var(--secondary);
+      text-transform: uppercase;
+    }
+    .comment-input, .comment-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      background: var(--card-bg);
+      color: var(--text);
+      margin-bottom: 12px;
+      outline: none;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .comment-input:focus, .comment-textarea:focus {
+      border-color: var(--accent);
+    }
+    .comment-textarea { resize: vertical; }
+    .comment-submit {
+      padding: 10px 28px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      font-family: var(--font-nav);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .comment-submit:hover { opacity: 0.85; }
+    .comment-item {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .comment-name {
+      font-family: var(--font-nav);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .comment-time {
+      font-family: var(--font-nav);
+      font-size: 12px;
+      color: var(--secondary);
+    }
+    .comment-text {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ─── About ─── */
+    .about-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      margin-bottom: 32px;
+      line-height: 1.25;
+    }
+    .about-body { font-size: 17px; line-height: 1.85; }
+    .about-body p { margin-bottom: 24px; }
+    .mission-box {
+      background: var(--highlight);
+      border: 1px solid var(--border);
+      padding: 28px;
+      border-radius: 2px;
+      margin-bottom: 32px;
+    }
+    .mission-label {
+      font-family: var(--font-nav);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .mission-text {
+      font-family: var(--font-display);
+      font-size: 20px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .themes-list {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .theme-tag {
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 14px;
+      font-family: var(--font-nav);
+    }
+
+    /* ─── Footer ─── */
+    .footer {
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+      padding: 28px 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--secondary);
+      font-family: var(--font-nav);
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--text);
+    }
+    .footer-sep { margin: 0 12px; color: var(--border); }
+
+    /* ─── Empty State ─── */
+    .empty-state {
+      color: var(--secondary);
+      font-size: 16px;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    /* ─── Loading ─── */
+    .loading {
+      text-align: center;
+      padding: 80px 0;
+      color: var(--secondary);
+      font-family: var(--font-nav);
+      font-size: 14px;
+    }
+
+    /* ─── RTL ─── */
+    [dir="rtl"] .logo-subtitle,
+    [dir="rtl"] .card-category,
+    [dir="rtl"] .section-title,
+    [dir="rtl"] .featured-label {
+      font-family: var(--font-arabic);
+      letter-spacing: 0;
+    }
+    [dir="rtl"] .card-title,
+    [dir="rtl"] .featured-title,
+    [dir="rtl"] .article-title,
+    [dir="rtl"] .about-title,
+    [dir="rtl"] .comments-title {
+      font-family: var(--font-arabic);
+    }
+    [dir="rtl"] .card-excerpt,
+    [dir="rtl"] .featured-excerpt,
+    [dir="rtl"] .article-body,
+    [dir="rtl"] .about-body,
+    [dir="rtl"] .comment-text,
+    [dir="rtl"] .mission-text {
+      font-family: var(--font-arabic);
+      font-style: normal;
+    }
+    [dir="rtl"] .nav-link,
+    [dir="rtl"] .filter-btn,
+    [dir="rtl"] .back-link,
+    [dir="rtl"] .lang-btn,
+    [dir="rtl"] .meta,
+    [dir="rtl"] .card-meta,
+    [dir="rtl"] .article-meta,
+    [dir="rtl"] .comment-form-label,
+    [dir="rtl"] .share-label,
+    [dir="rtl"] .mission-label,
+    [dir="rtl"] .theme-tag,
+    [dir="rtl"] .comment-name,
+    [dir="rtl"] .comment-time {
+      font-family: var(--font-arabic);
+    }
+    [dir="rtl"] .lang-switcher {
+      border-left: 1px solid var(--border);
+      border-right: none;
+      padding-left: 16px;
+      padding-right: 0;
+    }
+    [dir="rtl"] .comment-input,
+    [dir="rtl"] .comment-textarea {
+      font-family: var(--font-arabic);
+      direction: rtl;
+    }
+
+    /* ─── Dark Mode Toggle ─── */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-left: 1px solid var(--border);
+      padding-left: 16px;
+      margin-left: 0;
+    }
+    .toggle-icon {
+      font-size: 14px;
+      line-height: 1;
+    }
+    .toggle-track {
+      width: 40px;
+      height: 22px;
+      background: var(--border);
+      border-radius: 11px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .toggle-track.active {
+      background: var(--accent);
+    }
+    .toggle-knob {
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .toggle-track.active .toggle-knob {
+      transform: translateX(18px);
+    }
+    [dir="rtl"] .theme-toggle {
+      border-left: none;
+      border-right: 1px solid var(--border);
+      padding-left: 0;
+      padding-right: 16px;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 700px) {
+      .header-inner { flex-direction: column; gap: 16px; align-items: flex-start; }
+      .articles-grid { grid-template-columns: 1fr; }
+      .featured-title { font-size: 28px; }
+      .article-title { font-size: 28px; }
+      .main { padding: 0 20px 40px; }
+      .header-inner { padding: 16px 20px; }
+      .share-buttons { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner" id="header-inner">
+      <div class="logo" onclick="navigate('home')">
+        <h1>Ray's Blog</h1>
+        <p class="logo-subtitle" id="logo-subtitle">Analyse · Géopolitique · Économie · Société</p>
+      </div>
+      <div class="header-right">
+        <nav class="nav" id="nav"></nav>
+        <div class="lang-switcher" id="lang-switcher"></div>
+        <div class="theme-toggle" id="theme-toggle">
+          <span class="toggle-icon">☀️</span>
+          <div class="toggle-track" id="toggle-track" onclick="toggleDarkMode()">
+            <div class="toggle-knob"></div>
+          </div>
+          <span class="toggle-icon">🌙</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main" id="main">
+    <div class="loading">Chargement...</div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-logo">Ray's Blog</span>
+    <span class="footer-sep">|</span>
+    <span id="footer-text">© 2026</span>
+  </footer>
+
+  <script>
+    // ─── State ───
+    let currentLang = 'FR';
+    let currentPage = { type: 'home' };
+    let articles = [];
+    let comments = [
+      { name: 'Sophie M.', text: 'Analyse très pertinente, merci pour cet éclairage.', time: 'Il y a 2 heures' },
+      { name: 'Daniel K.', text: "Intéressant. J'aimerais voir plus d'articles sur ce sujet.", time: 'Il y a 5 heures' },
+    ];
+
+    // ─── i18n ───
+    const i18n = {
+      FR: {
+        home: 'Accueil', articles: 'Articles', about: 'À propos',
+        featured: 'À la une', latest: 'Derniers articles', readMore: 'Lire la suite',
+        minRead: 'min de lecture', comments: 'Commentaires', addComment: 'Ajouter un commentaire',
+        name: 'Votre nom', commentPlaceholder: 'Partagez votre réflexion...', submit: 'Publier',
+        aboutTitle: 'À propos de Ray\'s Blog',
+        aboutText1: "Ray's Blog est un espace d'analyse indépendant dédié à la compréhension des dynamiques géopolitiques, économiques et sociales qui façonnent notre monde contemporain.",
+        aboutText2: "Publié en trois langues — français, anglais et arabe — ce blog ambitionne de croiser les regards et les perspectives pour offrir une lecture nuancée et rigoureuse de l'actualité internationale.",
+        aboutText3: "Chaque article est le fruit d'une recherche approfondie et d'une volonté d'objectivité, dans la conviction que comprendre le monde est le premier pas pour le transformer.",
+        mission: 'Mission', missionText: 'Décrypter la complexité du monde avec rigueur, clarté et indépendance.',
+        themes: 'Thématiques', all: 'Tous', allArticles: 'Tous les articles', backHome: '← Retour',
+        footer: 'Analyses indépendantes en français, anglais et arabe',
+        share: 'Partager', copyLink: 'Copier le lien', copied: 'Lien copié !',
+        noArticles: 'Aucun article dans cette catégorie pour le moment.',
+        subtitle: 'Analyse · Géopolitique · Économie · Société',
+        justNow: "À l'instant",
+      },
+      EN: {
+        home: 'Home', articles: 'Articles', about: 'About',
+        featured: 'Featured', latest: 'Latest articles', readMore: 'Read more',
+        minRead: 'min read', comments: 'Comments', addComment: 'Add a comment',
+        name: 'Your name', commentPlaceholder: 'Share your thoughts...', submit: 'Post',
+        aboutTitle: "About Ray's Blog",
+        aboutText1: "Ray's Blog is an independent analytical space dedicated to understanding the geopolitical, economic, and social dynamics shaping our contemporary world.",
+        aboutText2: "Published in three languages — French, English, and Arabic — this blog aims to cross perspectives and offer a nuanced, rigorous reading of international affairs.",
+        aboutText3: "Each article is the product of thorough research and a commitment to objectivity, in the conviction that understanding the world is the first step toward transforming it.",
+        mission: 'Mission', missionText: "Deciphering the world's complexity with rigor, clarity, and independence.",
+        themes: 'Themes', all: 'All', allArticles: 'All articles', backHome: '← Back',
+        footer: 'Independent analysis in French, English, and Arabic',
+        share: 'Share', copyLink: 'Copy link', copied: 'Link copied!',
+        noArticles: 'No articles in this category yet.',
+        subtitle: 'Analysis · Geopolitics · Economy · Society',
+        justNow: 'Just now',
+      },
+      AR: {
+        home: 'الرئيسية', articles: 'المقالات', about: 'حول',
+        featured: 'مقال مميز', latest: 'أحدث المقالات', readMore: 'اقرأ المزيد',
+        minRead: 'دقيقة قراءة', comments: 'التعليقات', addComment: 'أضف تعليقاً',
+        name: 'اسمك', commentPlaceholder: 'شاركنا رأيك...', submit: 'نشر',
+        aboutTitle: "حول Ray's Blog",
+        aboutText1: "Ray's Blog هو فضاء تحليلي مستقل مكرّس لفهم الديناميكيات الجيوسياسية والاقتصادية والاجتماعية التي تشكّل عالمنا المعاصر.",
+        aboutText2: "يُنشر هذا المدوّنة بثلاث لغات — الفرنسية والإنجليزية والعربية — بهدف تقاطع وجهات النظر وتقديم قراءة دقيقة ومتعمّقة للشؤون الدولية.",
+        aboutText3: "كل مقال هو ثمرة بحث معمّق والتزام بالموضوعية، إيماناً بأن فهم العالم هو الخطوة الأولى نحو تغييره.",
+        mission: 'الرسالة', missionText: 'فك تعقيدات العالم بدقة ووضوح واستقلالية.',
+        themes: 'المحاور', all: 'الكل', allArticles: 'جميع المقالات', backHome: '→ رجوع',
+        footer: 'تحليلات مستقلة بالفرنسية والإنجليزية والعربية',
+        share: 'مشاركة', copyLink: 'نسخ الرابط', copied: 'تم نسخ الرابط!',
+        noArticles: 'لا توجد مقالات في هذه الفئة بعد.',
+        subtitle: 'تحليل · جيوسياسة · اقتصاد · مجتمع',
+        justNow: 'الآن',
+      },
+    };
+
+    const categoryLabels = {
+      FR: { geopolitics: 'Géopolitique', economy: 'Économie', politics: 'Politique', society: 'Société', psychology: 'Psychologie' },
+      EN: { geopolitics: 'Geopolitics', economy: 'Economy', politics: 'Politics', society: 'Society', psychology: 'Psychology' },
+      AR: { geopolitics: 'جيوسياسة', economy: 'اقتصاد', politics: 'سياسة', society: 'مجتمع', psychology: 'علم النفس' },
+    };
+
+    const catKeys = ['geopolitics', 'economy', 'politics', 'society', 'psychology'];
+    const langFlags = { FR: '🇫🇷', EN: '🇬🇧', AR: '🌍' };
+    const langLabels = { FR: 'Français', EN: 'English', AR: 'العربية' };
+
+    function isRTL(lang) { return lang === 'AR'; }
+    function t() { return i18n[currentLang]; }
+
+    // ─── Dark Mode ───
+    let darkMode = false;
+
+    function toggleDarkMode() {
+      darkMode = !darkMode;
+      document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+      document.getElementById('toggle-track').classList.toggle('active', darkMode);
+      // Save preference
+      try { localStorage.setItem('raysblog-dark', darkMode ? '1' : '0'); } catch(e) {}
+    }
+
+    // Load saved preference or detect system preference
+    function initTheme() {
+      try {
+        const saved = localStorage.getItem('raysblog-dark');
+        if (saved !== null) {
+          darkMode = saved === '1';
+        } else {
+          darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+      } catch(e) {
+        darkMode = false;
+      }
+      if (darkMode) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById('toggle-track').classList.add('active');
+      }
+    }
+
+    initTheme();
+
+    // ─── Load Articles ───
+    async function loadArticles() {
+      try {
+        const res = await fetch('articles/index.json');
+        const fileList = await res.json();
+        const loaded = [];
+        for (const file of fileList) {
+          try {
+            const r = await fetch('articles/' + file);
+            const article = await r.json();
+            loaded.push(article);
+          } catch (e) {
+            console.warn('Could not load article:', file, e);
+          }
+        }
+        articles = loaded;
+        render();
+      } catch (e) {
+        console.error('Could not load articles index:', e);
+        document.getElementById('main').innerHTML = '<div class="loading">Erreur de chargement des articles.</div>';
+      }
+    }
+
+    // ─── Navigation ───
+    function navigate(type, id) {
+      currentPage = id !== undefined ? { type, id } : { type };
+      window.scrollTo(0, 0);
+      // Update URL hash
+      if (type === 'article') {
+        window.location.hash = 'article-' + id;
+      } else {
+        window.location.hash = type === 'home' ? '' : type;
+      }
+      render();
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang.toLowerCase();
+      render();
+    }
+
+    // ─── Render ───
+    function render() {
+      const rtl = isRTL(currentLang);
+      const dir = rtl ? 'rtl' : 'ltr';
+
+      // Header direction
+      document.getElementById('header-inner').dir = dir;
+      document.getElementById('logo-subtitle').textContent = t().subtitle;
+
+      // Nav
+      const navEl = document.getElementById('nav');
+      navEl.innerHTML = [
+        { label: t().home, page: 'home' },
+        { label: t().articles, page: 'articles' },
+        { label: t().about, page: 'about' },
+      ].map(item => `<span class="nav-link ${currentPage.type === item.page ? 'active' : ''}" onclick="navigate('${item.page}')">${item.label}</span>`).join('');
+
+      // Lang switcher
+      document.getElementById('lang-switcher').innerHTML = ['FR', 'EN', 'AR'].map(l =>
+        `<button class="lang-btn ${currentLang === l ? 'active' : ''}" onclick="setLang('${l}')">${l === 'AR' ? 'عر' : l}</button>`
+      ).join('');
+
+      // Footer
+      document.getElementById('footer-text').textContent = '© 2026 — ' + t().footer;
+
+      // Main content
+      const main = document.getElementById('main');
+      main.dir = dir;
+
+      switch (currentPage.type) {
+        case 'home': renderHome(main); break;
+        case 'articles': renderArticles(main); break;
+        case 'article': renderArticle(main, currentPage.id); break;
+        case 'about': renderAbout(main); break;
+      }
+    }
+
+    // ─── Home Page ───
+    function renderHome(el) {
+      const featured = articles.find(a => a.featured);
+      const rest = articles.filter(a => !a.featured);
+      if (!featured) { el.innerHTML = '<div class="loading">Aucun article.</div>'; return; }
+
+      const featRtl = isRTL(featured.lang);
+
+      el.innerHTML = `
+        <div class="featured" onclick="navigate('article', ${featured.id})" ${featRtl ? 'dir="rtl"' : ''}>
+          <span class="featured-label">■ ${t().featured}</span>
+          <h2 class="featured-title">${featured.title}</h2>
+          <p class="featured-excerpt">${featured.excerpt}</p>
+          <div class="meta">
+            <span>${langFlags[featured.lang]} ${langLabels[featured.lang]}</span>
+            <span class="meta-sep">|</span>
+            <span>${featured.readTime} ${t().minRead}</span>
+            <span class="meta-sep">|</span>
+            <span>${featured.date}</span>
+          </div>
+        </div>
+        <div style="padding-top:40px">
+          <h3 class="section-title">${t().latest}</h3>
+          <div class="articles-grid">
+            ${rest.map(a => renderCard(a)).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // ─── Card ───
+    function renderCard(article) {
+      const artRtl = isRTL(article.lang);
+      const catLabel = (categoryLabels[article.lang] || categoryLabels.EN)[article.category] || article.category;
+      return `
+        <div class="card" onclick="navigate('article', ${article.id})" ${artRtl ? 'dir="rtl"' : ''}>
+          <div class="card-header">
+            <span class="card-category">${catLabel.toUpperCase()}</span>
+            <span class="card-flag">${langFlags[article.lang]}</span>
+          </div>
+          <h3 class="card-title">${article.title}</h3>
+          <p class="card-excerpt">${article.excerpt}</p>
+          <div class="card-footer">
+            <div class="card-meta">
+              <span>${article.date}</span><span>·</span><span>${article.readTime} ${t().minRead}</span>
+            </div>
+            <span class="card-readmore">${t().readMore} ${artRtl ? '←' : '→'}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    // ─── Articles Page ───
+    let currentFilter = 'all';
+
+    function setFilter(key) {
+      currentFilter = key;
+      render();
+    }
+
+    function renderArticles(el) {
+      const filtered = currentFilter === 'all' ? articles : articles.filter(a => a.category === currentFilter);
+      const cats = categoryLabels[currentLang];
+
+      el.innerHTML = `
+        <div style="padding-top:40px">
+          <h2 class="about-title">${t().allArticles}</h2>
+          <div class="filters">
+            <button class="filter-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="setFilter('all')">${t().all}</button>
+            ${catKeys.map(key => `
+              <button class="filter-btn ${currentFilter === key ? 'active' : ''}" onclick="setFilter('${key}')">${cats[key]}</button>
+            `).join('')}
+          </div>
+          <div class="articles-list">
+            ${filtered.length === 0
+              ? `<p class="empty-state">${t().noArticles}</p>`
+              : filtered.map(a => renderCard(a)).join('')
+            }
+          </div>
+        </div>
+      `;
+    }
+
+    // ─── Article Page ───
+    function renderArticle(el, id) {
+      const article = articles.find(a => a.id === id);
+      if (!article) { el.innerHTML = '<div class="loading">Article non trouvé.</div>'; return; }
+
+      const artRtl = isRTL(article.lang);
+      const uiRtl = isRTL(currentLang);
+      const catLabel = (categoryLabels[article.lang] || categoryLabels.EN)[article.category] || article.category;
+      const paragraphs = article.body.split('\n\n').map(p => `<p>${p}</p>`).join('');
+
+      const articleUrl = window.location.origin + window.location.pathname + '#article-' + article.id;
+      const shareText = encodeURIComponent(article.title + ' — Ray\'s Blog');
+      const shareUrl = encodeURIComponent(articleUrl);
+
+      // Update Open Graph dynamically
+      updateOG(article);
+
+      el.innerHTML = `
+        <div style="padding-top:40px; max-width:680px;">
+          <span class="back-link" onclick="navigate('home')">${t().backHome}</span>
+          <div class="article-container" ${artRtl ? 'dir="rtl"' : ''}>
+            <div class="article-category-row">
+              <span class="card-category">${catLabel.toUpperCase()}</span>
+              <span style="font-size:16px">${langFlags[article.lang]}</span>
+            </div>
+            <h1 class="article-title">${article.title}</h1>
+            <div class="article-meta">
+              <span>${article.date}</span><span>·</span><span>${article.readTime} ${t().minRead}</span>
+            </div>
+            <div class="article-body">${paragraphs}</div>
+          </div>
+
+          <!-- Share -->
+          <div class="share-section" ${uiRtl ? 'dir="rtl"' : ''}>
+            <div class="share-label">${t().share}</div>
+            <div class="share-buttons">
+              <button class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}', '_blank')">
+                𝕏 Twitter
+              </button>
+              <button class="share-btn" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}', '_blank')">
+                in LinkedIn
+              </button>
+              <button class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${shareUrl}', '_blank')">
+                f Facebook
+              </button>
+              <button class="share-btn" onclick="window.open('https://wa.me/?text=${shareText}%20${shareUrl}', '_blank')">
+                💬 WhatsApp
+              </button>
+              <button class="share-btn" id="copy-btn" onclick="copyLink('${articleUrl}')">
+                🔗 ${t().copyLink}
+              </button>
+            </div>
+          </div>
+
+          <div class="accent-divider"></div>
+
+          <!-- Comments -->
+          <div ${uiRtl ? 'dir="rtl"' : ''}>
+            <h3 class="comments-title">${t().comments} (${comments.length})</h3>
+            <div class="comment-form">
+              <div class="comment-form-label">${t().addComment}</div>
+              <input class="comment-input" type="text" id="comment-name" placeholder="${t().name}">
+              <textarea class="comment-textarea" id="comment-text" rows="3" placeholder="${t().commentPlaceholder}"></textarea>
+              <button class="comment-submit" onclick="addComment()">${t().submit}</button>
+            </div>
+            <div id="comments-list">
+              ${comments.map(c => renderComment(c)).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderComment(c) {
+      return `
+        <div class="comment-item">
+          <div class="comment-header">
+            <span class="comment-name">${c.name}</span>
+            <span class="comment-time">${c.time}</span>
+          </div>
+          <p class="comment-text">${c.text}</p>
+        </div>
+      `;
+    }
+
+    function addComment() {
+      const name = document.getElementById('comment-name').value.trim();
+      const text = document.getElementById('comment-text').value.trim();
+      if (!name || !text) return;
+      comments.unshift({ name, text, time: t().justNow });
+      render();
+    }
+
+    function copyLink(url) {
+      navigator.clipboard.writeText(url).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = '✓ ' + t().copied;
+        setTimeout(() => { btn.textContent = '🔗 ' + t().copyLink; }, 2000);
+      });
+    }
+
+    function updateOG(article) {
+      document.querySelector('meta[property="og:title"]').content = article.title + " — Ray's Blog";
+      document.querySelector('meta[property="og:description"]').content = article.excerpt;
+      document.querySelector('meta[name="twitter:title"]').content = article.title;
+      document.querySelector('meta[name="twitter:description"]').content = article.excerpt;
+      document.title = article.title + " — Ray's Blog";
+    }
+
+    // ─── About Page ───
+    function renderAbout(el) {
+      const cats = categoryLabels[currentLang];
+      el.innerHTML = `
+        <div style="padding-top:40px; max-width:640px;">
+          <h2 class="about-title">${t().aboutTitle}</h2>
+          <div class="about-body">
+            <p>${t().aboutText1}</p>
+            <p>${t().aboutText2}</p>
+            <p>${t().aboutText3}</p>
+          </div>
+          <div class="accent-divider"></div>
+          <div class="mission-box">
+            <div class="mission-label">${t().mission}</div>
+            <p class="mission-text">${t().missionText}</p>
+          </div>
+          <div>
+            <h3 class="section-title">${t().themes}</h3>
+            <div class="themes-list">
+              ${catKeys.map(key => `<span class="theme-tag">${cats[key]}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ─── Hash routing ───
+    function handleHash() {
+      const hash = window.location.hash.slice(1);
+      if (hash.startsWith('article-')) {
+        const id = parseInt(hash.replace('article-', ''));
+        currentPage = { type: 'article', id };
+      } else if (hash === 'articles') {
+        currentPage = { type: 'articles' };
+      } else if (hash === 'about') {
+        currentPage = { type: 'about' };
+      } else {
+        currentPage = { type: 'home' };
+      }
+      render();
+    }
+
+    window.addEventListener('hashchange', handleHash);
+
+    // ─── Init ───
+    loadArticles().then(() => {
+      handleHash();
+    });
+  </script>
+</body>
+</html>
